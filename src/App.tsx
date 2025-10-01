@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { motion, useAnimation, useInView, useScroll, useSpring, AnimatePresence } from 'framer-motion'
-import { ShieldCheck, Lock, LineChart, NotebookText, BrainCircuit, Radar, Sparkles, Heart, Tags, Github, Twitter, Mail, Menu, X } from 'lucide-react'
+import { ShieldCheck, Lock, LineChart, NotebookText, BrainCircuit, Radar, Sparkles, Heart, Tags, Github, Linkedin, Menu, X } from 'lucide-react'
 import { useRef } from 'react'
 import { useState } from 'react'
 
@@ -932,14 +932,11 @@ function Footer() {
           <a className="text-snow/80 hover:text-white transition" href="#">Contact</a>
         </div>
         <div className="flex gap-4 justify-start sm:justify-end">
-          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="#" aria-label="Twitter">
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="#" aria-label="GitHub">
+          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="https://github.com/mutahir-muhammad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github className="w-5 h-5" />
           </a>
-          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="#" aria-label="Email">
-            <Mail className="w-5 h-5" />
+          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="https://www.linkedin.com/in/mutahir-muhammad235/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Linkedin className="w-5 h-5" />
           </a>
         </div>
       </div>
