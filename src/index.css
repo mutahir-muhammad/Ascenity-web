@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass {
+  @apply bg-white/40 backdrop-blur-md border border-white/50 shadow-soft;
+}
+
+.container-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Improve base readability */
+body {
+  @apply leading-relaxed text-[17px];
+}
+h1,h2,h3,h4,h5,h6 {
+  @apply tracking-tight;
+}
+
+/* Focus styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-honolulu ring-offset-2 ring-offset-snow;
+}
+
+/* Card hover animation */
+.card {
+  @apply transition-all duration-200 ease-out hover:shadow-float hover:-translate-y-0.5;
+}

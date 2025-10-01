@@ -1,0 +1,681 @@
+import { useEffect } from 'react'
+import { motion, useAnimation, useInView, useScroll, useSpring, AnimatePresence } from 'framer-motion'
+import { ShieldCheck, Lock, LineChart, NotebookText, BrainCircuit, Radar, Sparkles, Heart, Tags, Github, Twitter, Mail, Menu, X } from 'lucide-react'
+              <div className="card rounded-2xl bg-oxford text-snow border border-white/10 p-6">
+                <h3 className="text-xl font-bold">Go Beyond 'Happy' or 'Sad'</h3>
+                <p className="mt-2 text-snow/80">Emotional Granularity turns vague feeling into precise language — a learnable skill linked to resilience.</p>
+                <div className="mt-4 space-y-4">
+                  <div className="p-4 rounded-xl bg-white/10">
+                    <div className="flex justify-between items-center mb-2">
+                      <div className="font-bold flex items-center gap-2">
+                        <span>😟</span>
+                        <span>"I feel bad"</span>
+                      </div>
+                      <span className="text-xs px-2 py-1 bg-phthalo/30 rounded-full">Before Ascenity</span>
+                    </div>
+                    <p className="text-sm text-snow/80">A vague label that provides little insight or direction for managing emotions.</p>
+                  </div>
+                  <motion.div 
+                    className="h-12 flex justify-center items-center"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5L12 19M12 19L19 12M12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </motion.div>
+                  <div className="p-4 rounded-xl bg-emerald/20">
+                    <div className="flex justify-between items-center mb-2">
+                      <div className="font-bold flex items-center gap-2">
+                        <span>😔</span>
+                        <span>"I feel disappointed"</span>
+                      </div>
+                      <span className="text-xs px-2 py-1 bg-robin/30 rounded-full">With Ascenity</span>
+                    </div>
+                    <p className="text-sm text-snow/90">A specific label that signals unmet expectations and opens pathways to reflection and adaptation.</p>
+                  </div>
+                </div>
+              </div>
+            )}, Mail, Menu, X } from 'lucide-react'
+import { useRef } from 'react'
+import { useState } from 'react'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
+
+function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (inView) controls.start('show')
+  }, [inView, controls])
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      animate={controls}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+function StoreBadges() {
+  return (
+    <div className="flex items-center gap-3 sm:gap-4">
+      <motion.a 
+        href="#" 
+        className="bg-gradient-to-r from-honolulu to-robin text-white font-bold py-3 px-8 rounded-xl shadow-soft flex items-center justify-center gap-2 hover:shadow-float transition-all duration-300"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <span className="text-lg">Coming Soon</span>
+        <motion.div
+          animate={{ opacity: [0.5, 1, 0.5], scale: [0.98, 1.02, 0.98] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-2 h-2 rounded-full bg-white"
+        />
+      </motion.a>
+    </div>
+  )
+}
+
+function SectionHeader({ overline, title, subtitle, dark = false }: { overline?: string; title: string; subtitle?: string; dark?: boolean }) {
+  return (
+    <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+      {overline && (
+        <div className={`text-sm font-semibold tracking-widest uppercase ${dark ? 'text-robin/80' : 'text-honolulu'}`}>{overline}</div>
+      )}
+      <h2 className={`text-2xl sm:text-4xl font-extrabold leading-tight mt-2 ${dark ? 'text-snow' : 'text-oxford'}`}>{title}</h2>
+      {subtitle && (
+        <p className={`mt-4 text-base sm:text-lg ${dark ? 'text-snow/80' : 'text-oxford/70'}`}>{subtitle}</p>
+      )}
+    </div>
+  )
+}
+
+function Hero() {
+  return (
+    <section id="home" className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <div className="absolute inset-0 bg-hero-gradient"></div>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <svg className="absolute -top-16 -right-16 w-[520px] h-[520px] opacity-20" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#1ccad8" d="M43.8,-66.7C56.2,-60.7,65.4,-47.5,73.4,-33.2C81.4,-18.9,88.1,-3.6,86.4,10C84.8,23.6,74.7,35.6,63.2,46.7C51.8,57.8,38.9,67.9,24.1,73C9.2,78.1,-7.7,78.1,-22.3,72.7C-36.9,67.3,-49.2,56.6,-59.4,44.1C-69.6,31.6,-77.7,17.3,-79.3,1.6C-80.9,-14.1,-76,-31.1,-66.4,-44.1C-56.9,-57.1,-42.6,-66.2,-27.2,-71C-11.8,-75.7,4.7,-76.1,18.7,-72.4C32.6,-68.8,43.3,-61.2,43.8,-66.7Z" transform="translate(100 100)" />
+        </svg>
+      </div>
+      <div className="container-px mx-auto grid lg:grid-cols-2 gap-10 items-center pt-20 pb-16">
+        <div>
+          <Reveal>
+            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-oxford">
+              The Architecture of Emotional Clarity
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-6 text-lg sm:text-xl text-oxford/80 max-w-xl">
+              A scientific framework for emotional regulation and self-awareness—built on Emotional Granularity, Affect Labeling, Expressive Writing, and AI-driven insights.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-8">
+              <StoreBadges />
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="relative">
+          <Reveal>
+            <motion.div
+              initial={{ rotate: -8, y: 20, opacity: 0 }}
+              animate={{ rotate: 0, y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="mx-auto w-[90%] max-w-[380px] aspect-[9/19] rounded-[2.5rem] border-4 border-oxford/90 shadow-2xl bg-snow relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-robin/10 via-transparent to-honolulu/10"></div>
+              <div className="h-10 w-40 bg-oxford/90 rounded-b-2xl mx-auto" />
+              <div className="p-5">
+                <div className="flex items-center gap-2 text-xs text-oxford/60">
+                  <span className="w-2 h-2 rounded-full bg-emerald"></span>
+                  Quick Log
+                </div>
+                <h3 className="mt-2 font-bold text-oxford">Discriminate • Label • Reflect</h3>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  {["Joy", "Calm", "Anxious", "Tired"].map((mood) => (
+                    <div key={mood} className="rounded-xl p-3 bg-white/70 border border-oxford/10">
+                      <div className="text-sm font-semibold text-oxford">{mood}</div>
+                      <div className="mt-1 h-2 bg-oxford/10 rounded-full overflow-hidden">
+                        <div className="h-full w-2/3 bg-honolulu"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 rounded-xl p-3 bg-white/70 border border-oxford/10">
+                  <div className="text-sm font-semibold text-oxford">Affect Labeling</div>
+                  <p className="mt-1 text-xs text-oxford/70">“Name it to tame it” — labeling shifts activation from amygdala to prefrontal cortex.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Problem() {
+  const items = [
+    { title: 'From Amorphous to Articulated', text: 'Transform vague “bad” into precise labels like disappointment, overwhelm, or envy.', icon: <Radar className="w-6 h-6 text-honolulu" /> },
+    { title: 'Reveal Hidden Triggers', text: 'Link feelings to context — #work, #family, #sleep — to surface patterns.', icon: <Tags className="w-6 h-6 text-honolulu" /> },
+    { title: 'Reflection with Feedback', text: 'Guided journaling and insights turn entries into growth-oriented feedback.', icon: <NotebookText className="w-6 h-6 text-honolulu" /> },
+  ]
+  return (
+    <section id="challenge" className="py-16 sm:py-24 bg-snow">
+      <div className="container-px mx-auto">
+        <SectionHeader title="Feeling is complex. Understanding it shouldn’t be." />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {items.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.05}>
+              <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+                <div className="flex items-center gap-3">
+                  {item.icon}
+                  <h3 className="text-lg font-bold text-oxford">{item.title}</h3>
+                </div>
+                <p className="mt-3 text-oxford/70">{item.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Solution() {
+  return (
+  <section id="solution" className="py-16 sm:py-24 bg-oxford text-snow">
+      <div className="container-px mx-auto">
+        <SectionHeader
+          dark
+          title="The Gap Between Feeling and Knowing"
+          subtitle="Most mood trackers are too simple. Most journals are too quiet. Ascenity bridges them with science-backed design."
+        />
+
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <Reveal>
+            <div className="card rounded-2xl bg-white/5 border border-white/10 p-6">
+              <h3 className="text-xl font-bold">Go Beyond ‘Happy’ or ‘Sad’</h3>
+              <p className="mt-2 text-snow/80">Emotional Granularity turns vague feeling into precise language — a learnable skill linked to resilience.</p>
+              <div className="mt-4 grid grid-cols-6 gap-2 text-2xl">
+                {['😊','🙂','😐','😟','😤','😴','🥰','😅','😕','😔','😌','🤗'].map((e, idx) => (
+                  <motion.div key={idx} whileHover={{ scale: 1.1 }} className="aspect-square rounded-xl bg-white/10 grid place-items-center">
+                    <span>{e}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="card rounded-2xl bg-white/5 border border-white/10 p-6">
+              <h3 className="text-xl font-bold">Connect Feelings to Life</h3>
+              <p className="mt-2 text-snow/80">Affect labeling and context (tags like #work, #family) surface triggers and supports you can act on.</p>
+              <div className="mt-4 space-y-3">
+                {[
+                  { mood: 'Anxious', tags: ['#work', '#deadline'] },
+                  { mood: 'Calm', tags: ['#family', '#walk'] },
+                  { mood: 'Joyful', tags: ['#friends', '#music'] },
+                ].map((r, i) => (
+                  <div key={i} className="flex items-center justify-between rounded-xl bg-white/10 p-3">
+                    <div className="font-semibold">{r.mood}</div>
+                    <div className="flex gap-2 flex-wrap">
+                      {r.tags.map(t => (
+                        <span key={t} className="px-2 py-1 rounded-full text-xs bg-honolulu/30">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Science() {
+  const [tab, setTab] = useState<'foundation' | 'process' | 'insight'>('foundation')
+  return (
+  <section id="science" className="relative overflow-hidden py-16 sm:py-24 bg-snow">
+      {/* Decorative orbs */}
+      <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full bg-gradient-to-b from-robin/20 to-honolulu/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-b from-phthalo/20 to-oxford/10 blur-3xl" />
+      <div className="container-px mx-auto">
+        <SectionHeader title="The Science Behind Ascenity" subtitle="A deep-dive into the foundations, process, and insight engine powering emotional clarity." />
+        {/* Desktop tabs */}
+        <div className="hidden lg:block">
+          <div role="tablist" aria-label="Science tabs" className="inline-flex rounded-lg border border-oxford/10 bg-white/70 p-1">
+            {[
+              { id: 'foundation', label: 'Foundation' },
+              { id: 'process', label: 'Process' },
+              { id: 'insight', label: 'Insight Engine' },
+            ].map(t => (
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={tab === (t.id as any)}
+                className={`px-4 py-2 rounded-md text-sm transition ${tab === t.id ? 'bg-honolulu text-white' : 'text-oxford/80 hover:bg-oxford/5'}`}
+                onClick={() => setTab(t.id as any)}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+          <div className="mt-6">
+            {tab === 'foundation' && (
+              <div className="card rounded-2xl bg-oxford text-snow border border-white/10 p-6">
+                <h3 className="text-xl font-bold">Go Beyond ‘Happy’ or ‘Sad’</h3>
+                <p className="mt-2 text-snow/80">Emotional Granularity turns vague feeling into precise language — a learnable skill linked to resilience.</p>
+                <div className="mt-4 grid grid-cols-6 gap-2 text-2xl">
+                  {['😊','🙂','😐','😟','😤','😴','🥰','😅','😕','😔','😌','🤗'].map((e, idx) => (
+                    <motion.div key={idx} whileHover={{ scale: 1.1 }} className="aspect-square rounded-xl bg-white/10 grid place-items-center">
+                      <span>{e}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {tab === 'process' && (
+              <div className="card rounded-2xl bg-oxford text-snow border border-white/10 p-6">
+                <h3 className="text-xl font-bold">Connect Feelings to Life</h3>
+                <p className="mt-2 text-snow/80">Affect labeling and context (tags like #work, #family) surface triggers and supports you can act on.</p>
+                <div className="mt-4 space-y-3">
+                  {[
+                    { mood: 'Anxious', tags: ['#work', '#deadline'] },
+                    { mood: 'Calm', tags: ['#family', '#walk'] },
+                    { mood: 'Joyful', tags: ['#friends', '#music'] },
+                  ].map((r, i) => (
+                    <div key={i} className="flex items-center justify-between rounded-xl bg-white/10 p-3">
+                      <div className="font-semibold">{r.mood}</div>
+                      <div className="flex gap-2 flex-wrap">
+                        {r.tags.map(t => (
+                          <span key={t} className="px-2 py-1 rounded-full text-xs bg-honolulu/30">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {tab === 'insight' && (
+              <div className="card rounded-2xl bg-oxford text-snow border border-white/10 p-6">
+                <h3 className="text-xl font-bold">Insight Engine</h3>
+                <p className="mt-2 text-snow/80">Visual dashboards and AI‑assisted insights turn patterns into action while keeping you in control.</p>
+                <ul className="mt-4 list-disc pl-5 text-snow/80 text-sm space-y-1">
+                  <li>Custom charts for personal relevance</li>
+                  <li>Insight assistant, not a therapist</li>
+                  <li>Clinician‑in‑the‑loop safeguards</li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile/tablet layout retains the alternating blocks */}
+        <div className="grid lg:hidden gap-8 items-center">
+          <Reveal>
+            <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+              <h3 className="text-xl font-bold text-oxford">1) The Foundation</h3>
+              <p className="mt-2 text-oxford/70">Emotional Granularity and Affect Labeling: naming feelings precisely reduces amygdala activation and engages the prefrontal cortex (“name it to tame it”).</p>
+              <ul className="mt-3 text-oxford/70 list-disc pl-5 space-y-1 text-sm">
+                <li>From amorphous to articulated emotion</li>
+                <li>Granularity is a learnable skill</li>
+                <li>Immediate calming via labeling</li>
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+              <h3 className="text-xl font-bold text-oxford">2) The Process</h3>
+              <p className="mt-2 text-oxford/70">Expressive Writing (Pennebaker) and CBT Self‑Monitoring: guided journaling creates narrative, reveals thought‑feeling‑behavior links, and supports regulation.</p>
+              <ul className="mt-3 text-oxford/70 list-disc pl-5 space-y-1 text-sm">
+                <li>Dual prompts: event + feelings</li>
+                <li>Adaptive prompts for readiness</li>
+                <li>Log for quick relief; reflect for depth</li>
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+              <h3 className="text-xl font-bold text-oxford">3) The Insight Engine</h3>
+              <p className="mt-2 text-oxford/70">Visual dashboards and AI‑assisted insights turn patterns into action while keeping you in control.</p>
+              <ul className="mt-3 text-oxford/70 list-disc pl-5 space-y-1 text-sm">
+                <li>Custom charts for personal relevance</li>
+                <li>Insight assistant, not a therapist</li>
+                <li>Clinician‑in‑the‑loop safeguards</li>
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal delay={0.15}>
+          <div className="card mt-8 rounded-2xl border border-oxford/10 bg-white/70 p-6">
+            <h3 className="text-xl font-bold text-oxford">The Ascenity Flywheel</h3>
+            <p className="mt-2 text-oxford/70">Log → Reflect → Analyze → Learn & Adapt. A self-reinforcing loop where each step strengthens the next.</p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Accordion({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="rounded-xl border border-oxford/10 bg-white/70">
+      <button
+        className="w-full text-left px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between"
+        onClick={() => setOpen(v => !v)}
+      >
+        <span className="font-semibold text-oxford">{title}</span>
+        <motion.span animate={{ rotate: open ? 90 : 0 }} className="text-oxford/60">›</motion.span>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
+        className="overflow-hidden border-t border-oxford/10"
+      >
+        <div className="px-4 sm:px-6 py-4 sm:py-5 text-oxford/80 prose prose-oxford max-w-none">
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+function DeepDive() {
+  return (
+  <section id="deep-dive" className="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-b from-snow to-snow">
+      {/* Decorative waves/orbs */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-40 bg-gradient-to-b from-honolulu/10 to-transparent blur-2xl" />
+      <div className="pointer-events-none absolute -bottom-16 right-0 w-72 h-72 rounded-full bg-gradient-to-tr from-robin/20 to-phthalo/10 blur-3xl" />
+      <div className="container-px mx-auto">
+        <SectionHeader
+          title="Deep‑Dive: The Architecture of Emotional Clarity"
+          subtitle="The problem we solve: vague feelings, hidden triggers, and reflection without feedback — transformed into precise language, actionable context, and supportive insight."
+        />
+
+        <div className="grid lg:grid-cols-2 gap-6">
+          <Reveal>
+            <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+              <h3 className="text-xl font-bold text-oxford">Problem → Solution</h3>
+              <ul className="mt-3 space-y-2 text-oxford/80">
+                <li>• Amorphous feeling → Articulated emotion via Emotional Granularity</li>
+                <li>• Hidden triggers → Context tags and journaling (CBT self‑monitoring)</li>
+                <li>• Reflection without feedback → Visual dashboards + AI insight assistant</li>
+              </ul>
+              <p className="mt-3 text-oxford/70 text-sm">Each log is a micro‑intervention: labeling recruits prefrontal control and calms reactivity (“name it to tame it”).</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+              <h3 className="text-xl font-bold text-oxford">The Ascenity Flywheel</h3>
+              <p className="mt-2 text-oxford/80">Log → Reflect → Analyze → Learn & Adapt. A self‑reinforcing loop where each step strengthens the next.</p>
+              <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                <div className="p-3 rounded-lg bg-oxford/5">Log: Discriminate + label</div>
+                <div className="p-3 rounded-lg bg-oxford/5">Reflect: Express + monitor</div>
+                <div className="p-3 rounded-lg bg-oxford/5">Analyze: Visualize + detect</div>
+                <div className="p-3 rounded-lg bg-oxford/5">Adapt: Plan + act</div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="mt-8 grid lg:grid-cols-3 gap-6">
+          <Reveal>
+            <div className="card rounded-2xl bg-phthalo/5 border border-oxford/10 p-6">
+              <h4 className="text-lg font-bold text-oxford">Part 1: The Foundation</h4>
+              <p className="mt-2 text-oxford/80 text-sm">Emotional Granularity & Affect Labeling: precise naming is not passive; it’s an active intervention that recruits the prefrontal cortex and reduces amygdala activation.</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <div className="card rounded-2xl bg-phthalo/5 border border-oxford/10 p-6">
+              <h4 className="text-lg font-bold text-oxford">Part 2: The Process</h4>
+              <p className="mt-2 text-oxford/80 text-sm">Expressive Writing (Pennebaker) + CBT Self‑Monitoring structure experience into narrative and patterns that support lasting regulation.</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="card rounded-2xl bg-phthalo/5 border border-oxford/10 p-6">
+              <h4 className="text-lg font-bold text-oxford">Part 3: The Insight Engine</h4>
+              <p className="mt-2 text-oxford/80 text-sm">Visual feedback makes patterns tangible; AI augments reflection (insight assistant, clinician‑in‑the‑loop, privacy by design).</p>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.15}>
+          <div className="mt-8 space-y-4">
+            <Accordion title="Read the full deep‑dive (Foundation)">
+              <p>
+                The fundamental premise is that precisely identifying and labeling an emotional state is an active, potent intervention. Emotional Granularity (EG) is a learnable skill that transforms amorphous feeling into articulated emotion, building resilience and enabling regulation.
+                Affect labeling shifts activation from amygdala to prefrontal cortex, providing immediate calming and control.
+              </p>
+            </Accordion>
+            <Accordion title="Read the full deep‑dive (Process)">
+              <p>
+                Expressive writing organizes chaotic experience into narrative, reduces cognitive load, and supports meaning‑making; CBT self‑monitoring exposes the thought‑feeling‑behavior link. Dual prompts (event + feelings) and adaptive guidance prevent overwhelm and optimize timing.
+              </p>
+            </Accordion>
+            <Accordion title="Read the full deep‑dive (Insight Engine)">
+              <p>
+                Visualization externalizes the inner landscape, creating a motivational feedback loop; personalization boosts retention. AI provides pattern detection and context‑aware suggestions while remaining an insight assistant (not a therapist) with clinician oversight and strict privacy.
+              </p>
+            </Accordion>
+            <Accordion title="Read the full deep‑dive (Flywheel & Strategy)">
+              <p>
+                A synergistic flywheel—Log, Reflect, Analyze, Learn & Adapt—drives increasing clarity. Strategic recommendations: tiered logging (Quick Log vs. Reflect), positive‑psychology visualization, customizable dashboards, expectation‑setting in onboarding, and clinician‑in‑the‑loop AI.
+              </p>
+            </Accordion>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Features() {
+  const features = [
+    { title: 'Granular Emotion Logging', icon: <Heart className="w-6 h-6 text-honolulu" />, text: 'A learnable skill that builds resilience and clarity.' },
+    { title: 'Reflective Journaling', icon: <NotebookText className="w-6 h-6 text-honolulu" />, text: 'Expressive writing + CBT self-monitoring prompts.' },
+    { title: 'AI-Powered Insights', icon: <BrainCircuit className="w-6 h-6 text-honolulu" />, text: 'Pattern detection that augments, not replaces, your judgment.' },
+    { title: 'Visualize Your Journey', icon: <LineChart className="w-6 h-6 text-honolulu" />, text: 'Custom dashboards that motivate and inform action.' },
+  ]
+  return (
+  <section id="features" className="py-16 sm:py-24 bg-snow">
+      <div className="container-px mx-auto">
+        <SectionHeader title="Your Toolkit for Emotional Clarity." />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={i * 0.05}>
+              <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
+                <div className="flex items-center gap-3">
+                  {f.icon}
+                  <h3 className="text-lg font-bold text-oxford">{f.title}</h3>
+                </div>
+                <p className="mt-3 text-oxford/70">{f.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Privacy() {
+  return (
+  <section id="privacy" className="py-16 sm:py-24 bg-oxford text-snow">
+      <div className="container-px mx-auto">
+        <div className="max-w-3xl mx-auto text-center">
+          <Reveal>
+            <ShieldCheck className="w-12 h-12 mx-auto text-emerald" />
+            <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold">Your Thoughts are Yours. Period.</h2>
+            <p className="mt-3 text-snow/80">All entries are encrypted, secure, and never sold.</p>
+            <div className="mt-6 inline-flex items-center gap-2 text-snow/70">
+              <Lock className="w-5 h-5" />
+              End-to-end encryption • Private by design
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function FinalCTA() {
+  return (
+  <section id="get-started" className="py-16 sm:py-24 bg-snow">
+      <div className="container-px mx-auto text-center">
+        <Reveal>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-oxford">Start Building Emotional Clarity Today</h2>
+          <div className="mt-6 flex justify-center">
+            <StoreBadges />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="bg-oxford text-snow">
+      <div className="container-px mx-auto py-10 sm:py-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-center">
+        <div className="text-left">
+          <div className="flex items-center gap-2 font-extrabold text-xl">
+            <Sparkles className="w-6 h-6 text-emerald" /> Ascenity
+          </div>
+          <p className="mt-2 text-snow/70">Emotional clarity, one step at a time.</p>
+        </div>
+        <div className="flex gap-6 justify-start sm:justify-center">
+          <a className="text-snow/80 hover:text-white transition" href="#">Privacy Policy</a>
+          <a className="text-snow/80 hover:text-white transition" href="#">Terms</a>
+          <a className="text-snow/80 hover:text-white transition" href="#">Contact</a>
+        </div>
+        <div className="flex gap-4 justify-start sm:justify-end">
+          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="#" aria-label="Twitter">
+            <Twitter className="w-5 h-5" />
+          </a>
+          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="#" aria-label="GitHub">
+            <Github className="w-5 h-5" />
+          </a>
+          <a className="p-2 rounded-lg bg-white/10 hover:bg-white/15 transition" href="#" aria-label="Email">
+            <Mail className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+      <div className="text-center text-snow/60 text-sm pb-8">© {new Date().getFullYear()} Ascenity. All rights reserved.</div>
+    </footer>
+  )
+}
+
+export default function App() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+  return (
+    <div>
+      {/* Sticky header */}
+      <div className="sticky top-0 z-40 backdrop-blur bg-snow/70 border-b border-oxford/10">
+        <div className="container-px mx-auto flex items-center justify-between h-14">
+          <a href="#home" className="font-extrabold text-oxford flex items-center gap-2"><Sparkles className="w-5 h-5 text-emerald" /> Ascenity</a>
+          <nav className="hidden md:flex items-center gap-6 text-oxford/80">
+            <a href="#challenge" className="hover:text-oxford transition">Challenge</a>
+            <a href="#solution" className="hover:text-oxford transition">Solution</a>
+            <a href="#science" className="hover:text-oxford transition">Science</a>
+            <a href="#deep-dive" className="hover:text-oxford transition">Deep‑Dive</a>
+            <a href="#features" className="hover:text-oxford transition">Features</a>
+            <a href="#privacy" className="hover:text-oxford transition">Privacy</a>
+            <a href="#get-started" className="px-3 py-1.5 rounded-md bg-honolulu text-white hover:shadow-soft transition">Get Started</a>
+          </nav>
+          <button
+            className="md:hidden p-2 rounded-md hover:bg-oxford/5 text-oxford"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen(o => !o)}
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+        {/* Scroll progress bar */}
+        <ScrollProgress />
+        <AnimatePresence>
+          {mobileOpen && (
+            <>
+              <motion.div
+                key="overlay"
+                className="fixed inset-0 bg-oxford/20 backdrop-blur-sm z-40 md:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileOpen(false)}
+              />
+              <motion.div
+                key="sheet"
+                className="fixed top-14 left-0 right-0 z-50 md:hidden"
+                initial={{ y: -16, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -16, opacity: 0 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+              >
+                <div className="mx-3 rounded-2xl border border-oxford/10 bg-snow shadow-float overflow-hidden">
+                  <div className="flex flex-col py-2">
+                    {[
+                      { href: '#challenge', label: 'Challenge' },
+                      { href: '#solution', label: 'Solution' },
+                      { href: '#science', label: 'Science' },
+                      { href: '#deep-dive', label: 'Deep‑Dive' },
+                      { href: '#features', label: 'Features' },
+                      { href: '#privacy', label: 'Privacy' },
+                    ].map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className="px-4 py-3 text-oxford/90 hover:bg-oxford/5"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                    <div className="px-3 pt-2 pb-3">
+                      <a href="#get-started" onClick={() => setMobileOpen(false)} className="block text-center px-4 py-2 rounded-md bg-honolulu text-white">Get Started</a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
+      <Hero />
+      <Problem />
+      <Solution />
+      <Science />
+      <DeepDive />
+      <Features />
+      <Privacy />
+      <FinalCTA />
+      <Footer />
+    </div>
+  )
+}
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 20, mass: 0.2 })
+  return (
+    <motion.div className="h-1 bg-gradient-to-r from-honolulu via-robin to-phthalo origin-left" style={{ scaleX }} />
+  )
+}
