@@ -78,12 +78,12 @@ function Hero() {
         <div>
           <Reveal>
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-oxford">
-              The Architecture of Emotional Clarity
+              Understand Your Mind. Reshape Your Well-being.
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg sm:text-xl text-oxford/80 max-w-xl">
-              A scientific framework for emotional regulation and self-awareness—built on Emotional Granularity, Affect Labeling, Expressive Writing, and AI-driven insights.
+              Ascenity is your personal guide to emotional clarity. Through intelligent journaling and mood tracking, we help you discover the patterns in your thoughts and feelings, empowering you to build a more resilient and self-aware life.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
@@ -104,12 +104,70 @@ function Hero() {
               <div className="absolute inset-0 bg-gradient-to-b from-robin/10 via-transparent to-honolulu/10"></div>
               <div className="h-10 w-40 bg-oxford/90 rounded-b-2xl mx-auto" />
               <div className="p-5">
-                <div className="flex items-center gap-2 text-xs text-oxford/60">
+                <div className="flex items-center gap-2 text-xs text-oxford/70">
                   <span className="w-2 h-2 rounded-full bg-emerald"></span>
                   Quick Log
                 </div>
-                <h3 className="mt-2 font-bold text-oxford">Discriminate • Label • Reflect</h3>
-                <div className="mt-4 grid grid-cols-2 gap-3">
+                <h3 className="mt-2 font-bold text-oxford">Differentiate • Label • Reflect</h3>
+                
+                {/* Mood Trend Graph */}
+                <div className="mt-4 rounded-xl p-3 bg-white/70 border border-oxford/10">
+                  <div className="text-xs font-semibold text-oxford mb-2">Weekly Mood Trends</div>
+                  <div className="relative h-20">
+                    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="mobileGraphGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#027bce" />
+                          <stop offset="50%" stopColor="#1ccad8" />
+                          <stop offset="100%" stopColor="#0f4c81" />
+                        </linearGradient>
+                      </defs>
+                      {/* Area under curve */}
+                      <path
+                        d="M 0,70 L 16,55 L 33,58 L 50,42 L 66,48 L 83,35 L 100,28 L 100,100 L 0,100 Z"
+                        fill="url(#mobileGraphGradient)"
+                        opacity="0.15"
+                      />
+                      {/* Main line */}
+                      <path
+                        d="M 0,70 L 16,55 L 33,58 L 50,42 L 66,48 L 83,35 L 100,28"
+                        stroke="url(#mobileGraphGradient)"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      {/* Data points */}
+                      {[
+                        { x: 0, y: 70 },
+                        { x: 16, y: 55 },
+                        { x: 33, y: 58 },
+                        { x: 50, y: 42 },
+                        { x: 66, y: 48 },
+                        { x: 83, y: 35 },
+                        { x: 100, y: 28 },
+                      ].map((point, i) => (
+                        <circle
+                          key={i}
+                          cx={`${point.x}%`}
+                          cy={`${point.y}%`}
+                          r="2.5"
+                          fill="white"
+                          stroke={i > 4 ? '#1ccad8' : '#027bce'}
+                          strokeWidth="1.5"
+                        />
+                      ))}
+                    </svg>
+                  </div>
+                  <div className="flex justify-between text-xs text-oxford/60 mt-1">
+                    <span>Mon</span>
+                    <span>Wed</span>
+                    <span>Fri</span>
+                    <span>Sun</span>
+                  </div>
+                </div>
+                
+                <div className="mt-3 grid grid-cols-2 gap-2">
                   {["Joy", "Calm", "Anxious", "Tired"].map((mood) => (
                     <div key={mood} className="rounded-xl p-3 bg-white/70 border border-oxford/10">
                       <div className="text-sm font-semibold text-oxford">{mood}</div>
@@ -142,7 +200,7 @@ function Problem() {
   return (
     <section id="challenge" className="py-16 sm:py-24 bg-snow">
       <div className="container-px mx-auto">
-        <SectionHeader title="Feeling is complex. Understanding it shouldn't be." />
+        <SectionHeader title="Feeling Overwhelmed is Normal. Staying Stuck Isn't." subtitle="In a world of constant notifications and pressures, it's easy to lose touch with your inner self. Stress, anxiety, and fluctuating moods are common challenges, yet the stigma around mental health can make it difficult to seek clarity. Many people are looking for a private, accessible way to manage their emotional well-being without feeling overwhelmed by complex tools or clinical language. Ascenity was created to be that space—a calm, non-intrusive sanctuary on your phone, designed to help you navigate your emotional world with confidence and curiosity." />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
@@ -167,7 +225,7 @@ function Solution() {
       <div className="container-px mx-auto">
         <SectionHeader
           dark
-          title="The Gap Between Feeling and Knowing"
+          title="Your Path to Self-Discovery, Simplified."
           subtitle="Most mood trackers are too simple. Most journals are too quiet. Ascenity bridges them with science-backed design."
         />
 
@@ -178,17 +236,17 @@ function Solution() {
               <p className="mt-2 text-snow/80">Emotional Granularity turns vague feeling into precise language — a learnable skill linked to resilience.</p>
               <div className="mt-4 space-y-3">
                 <div className="p-3 rounded-xl bg-white/10">
-                  <div className="text-sm text-snow/60 mb-1">Monday morning</div>
+                  <div className="text-sm text-snow/80 mb-1">Monday morning</div>
                   <div className="font-semibold mb-1">"I feel overwhelmed"</div>
                   <div className="text-xs text-snow/80">Cause: 3 deadline projects + lack of sleep</div>
                 </div>
                 <div className="p-3 rounded-xl bg-white/10">
-                  <div className="text-sm text-snow/60 mb-1">Tuesday afternoon</div>
+                  <div className="text-sm text-snow/80 mb-1">Tuesday afternoon</div>
                   <div className="font-semibold mb-1">"I feel energized"</div>
                   <div className="text-xs text-snow/80">Cause: Completed project + team appreciation</div>
                 </div>
                 <div className="p-3 rounded-xl bg-white/10">
-                  <div className="text-sm text-snow/60 mb-1">Wednesday evening</div>
+                  <div className="text-sm text-snow/80 mb-1">Wednesday evening</div>
                   <div className="font-semibold mb-1">"I feel content"</div>
                   <div className="text-xs text-snow/80">Cause: Quality time with family + good workout</div>
                 </div>
@@ -383,21 +441,21 @@ function Science() {
               </p>
             </div>
             
-            <div id="flywheel" className="relative mx-auto max-w-2xl aspect-square">
+            <div id="flywheel" className="relative mx-auto max-w-2xl aspect-square px-4 sm:px-0">
               <div className="absolute inset-0 flex items-center justify-center">
                 
                 {/* Clean circular path */}
                 <motion.div 
-                  className="absolute w-[85%] h-[85%] rounded-full border-2 border-honolulu/30"
+                  className="absolute w-[70%] sm:w-[85%] h-[70%] sm:h-[85%] rounded-full border-2 border-honolulu/30"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 />
                 
                 {/* Central circle */}
-                <div className="relative z-10 w-48 h-48 rounded-full bg-gradient-to-br from-honolulu to-robin flex items-center justify-center text-white shadow-lg">
+                <div className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-honolulu to-robin flex items-center justify-center text-white shadow-lg">
                   <div className="text-center">
-                    <Sparkles className="w-10 h-10 mx-auto mb-2" />
-                    <div className="text-lg font-bold">Emotional<br/>Clarity</div>
+                    <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mx-auto mb-1 sm:mb-2" />
+                    <div className="text-sm sm:text-base lg:text-lg font-bold leading-tight">Emotional<br/>Clarity</div>
                   </div>
                 </div>
                 
@@ -405,7 +463,7 @@ function Science() {
                 {[
                 { 
                   name: "Log", 
-                  description: "Discriminate & Label", 
+                  description: "Differentiate & Label", 
                   icon: <Heart className="w-7 h-7 text-white" />, 
                   position: "top", 
                   color: "from-honolulu to-robin",
@@ -454,20 +512,23 @@ function Science() {
                 return (
                   <motion.div 
                     key={stage.name}
-                    className="absolute w-36 z-20"
+                    className="absolute w-24 sm:w-28 lg:w-36 z-20"
                     style={style}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
                     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                   >
-                    <div className={`relative bg-gradient-to-br ${stage.color} p-4 rounded-xl shadow-lg`}>
+                    <div className={`relative bg-gradient-to-br ${stage.color} p-2 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl shadow-lg`}>
                       <div className="flex flex-col items-center text-center text-white">
-                        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-2">
-                          {stage.icon}
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-white/20 flex items-center justify-center mb-1 sm:mb-2">
+                          <Heart className={stage.name === 'Log' ? 'w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7 text-white' : 'hidden'} />
+                          <NotebookText className={stage.name === 'Reflect' ? 'w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7 text-white' : 'hidden'} />
+                          <LineChart className={stage.name === 'Analyze' ? 'w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7 text-white' : 'hidden'} />
+                          <BrainCircuit className={stage.name === 'Adapt' ? 'w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7 text-white' : 'hidden'} />
                         </div>
-                        <div className="font-bold text-lg">{stage.name}</div>
-                        <div className="text-xs opacity-90 mt-1">{stage.description}</div>
+                        <div className="font-bold text-xs sm:text-sm lg:text-lg">{stage.name}</div>
+                        <div className="text-xs sm:text-sm lg:text-base mt-0.5 sm:mt-1 leading-tight">{stage.description}</div>
                       </div>
                     </div>
                   </motion.div>
@@ -704,7 +765,7 @@ function DeepDive() {
                     whileHover={{ scale: 1.03, backgroundColor: "rgba(2, 123, 206, 0.15)" }}
                   >
                     <div className="w-6 h-6 rounded-full bg-gradient-to-r from-honolulu to-robin flex items-center justify-center text-white shadow-soft">1</div>
-                    <div className="font-medium text-honolulu">Log: Discriminate + label</div>
+                    <div className="font-medium text-honolulu">Log: Differentiate + label</div>
                   </motion.div>
                   <motion.div 
                     className="flex items-center gap-2 px-3 py-2 rounded-lg bg-robin/10 border border-robin/20"
@@ -853,28 +914,434 @@ function DeepDive() {
 }
 
 function Features() {
-  const features = [
-    { title: 'Granular Emotion Logging', icon: <Heart className="w-6 h-6 text-honolulu" />, text: 'A learnable skill that builds resilience and clarity.' },
-    { title: 'Reflective Journaling', icon: <NotebookText className="w-6 h-6 text-honolulu" />, text: 'Expressive writing + CBT self-monitoring prompts.' },
-    { title: 'AI-Powered Insights', icon: <BrainCircuit className="w-6 h-6 text-honolulu" />, text: 'Pattern detection that augments, not replaces, your judgment.' },
-    { title: 'Visualize Your Journey', icon: <LineChart className="w-6 h-6 text-honolulu" />, text: 'Custom dashboards that motivate and inform action.' },
-  ]
   return (
   <section id="features" className="py-16 sm:py-24 bg-snow">
       <div className="container-px mx-auto">
         <SectionHeader title="Your Toolkit for Emotional Clarity." />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.05}>
-              <div className="card rounded-2xl border border-oxford/10 bg-white/70 p-6">
-                <div className="flex items-center gap-3">
-                  {f.icon}
-                  <h3 className="text-lg font-bold text-oxford">{f.title}</h3>
+        
+        <div className="space-y-12">
+          {/* Feature 1: Reflective Journaling */}
+          <Reveal>
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-honolulu to-robin flex items-center justify-center flex-shrink-0">
+                    <NotebookText className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-oxford">A Private Space to Think and Grow</h3>
                 </div>
-                <p className="mt-3 text-oxford/70">{f.text}</p>
+                <p className="text-oxford/80 text-base sm:text-lg leading-relaxed">
+                  Our minimalist, distraction-free interface is designed to reduce cognitive load and help you focus. The clean layout and calming typography create a serene environment, making it easier to capture your thoughts, process your day, and reflect on what truly matters. Every element serves a purpose, ensuring your journaling experience is seamless and supportive.
+                </p>
               </div>
-            </Reveal>
-          ))}
+              <div className="card rounded-2xl border border-oxford/10 bg-gradient-to-br from-white to-honolulu/5 p-4 sm:p-6">
+                <div className="space-y-3">
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-honolulu/20">
+                    <div className="text-xs sm:text-sm text-oxford/70 mb-2">Today's Entry</div>
+                    <p className="text-oxford/80 text-xs sm:text-sm italic">"Feeling accomplished after completing the project, but also exhausted. Need to remember to celebrate wins before moving to the next task..."</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 rounded-full text-xs bg-honolulu/20 text-honolulu">#work</span>
+                    <span className="px-3 py-1 rounded-full text-xs bg-robin/20 text-phthalo">#achievement</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Feature 2: Intelligent Mood Logging */}
+          <Reveal delay={0.1}>
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+              <div className="order-2 lg:order-1 card rounded-2xl border border-oxford/10 bg-gradient-to-br from-white to-robin/5 p-4 sm:p-6">
+                <div className="space-y-3">
+                  {[
+                    { mood: 'Anxious', intensity: 7, tags: ['#work', '#deadline'] },
+                    { mood: 'Content', intensity: 8, tags: ['#family', '#relaxation'] },
+                    { mood: 'Energized', intensity: 9, tags: ['#exercise', '#morning'] },
+                  ].map((entry, i) => (
+                    <div key={i} className="p-3 sm:p-4 rounded-xl bg-white/70 border border-robin/20">
+                      <div className="flex items-center justify-between mb-2 gap-2">
+                        <span className="font-semibold text-oxford text-sm sm:text-base">{entry.mood}</span>
+                        <span className="text-xs text-oxford/70 whitespace-nowrap">Intensity: {entry.intensity}/10</span>
+                      </div>
+                      <div className="h-2 bg-oxford/10 rounded-full overflow-hidden mb-2">
+                        <div className="h-full bg-gradient-to-r from-robin to-honolulu" style={{ width: `${entry.intensity * 10}%` }}></div>
+                      </div>
+                      <div className="flex gap-2">
+                        {entry.tags.map(tag => (
+                          <span key={tag} className="px-2 py-1 rounded-full text-xs bg-robin/20 text-phthalo">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="order-1 lg:order-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-robin to-phthalo flex items-center justify-center flex-shrink-0">
+                    <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-oxford">Track More Than Just Your Mood</h3>
+                </div>
+                <p className="text-oxford/80 text-base sm:text-lg leading-relaxed">
+                  Go beyond "happy" or "sad." With Ascenity, you can log a spectrum of emotions, rate their intensity, and add contextual tags like "work," "family," or "exercise." This helps you build a rich, detailed map of your emotional landscape. Research shows that the simple act of daily mood check-ins can significantly improve mental well-being.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Feature 3: AI-Powered Insights */}
+          <Reveal delay={0.2}>
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-phthalo to-oxford flex items-center justify-center flex-shrink-0">
+                    <BrainCircuit className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-oxford">Meet Your Personal AI Guide</h3>
+                </div>
+                <p className="text-oxford/80 text-base sm:text-lg leading-relaxed mb-4">
+                  This is where your journey comes into focus. Ascenity's AI gently analyzes your journal entries to provide personalized insights.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-phthalo/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-phthalo text-xs font-bold">✓</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-oxford">Sentiment Analysis</div>
+                      <div className="text-oxford/70 text-sm">Understand the underlying emotion in your writing.</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-phthalo/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-phthalo text-xs font-bold">✓</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-oxford">Topic Extraction</div>
+                      <div className="text-oxford/70 text-sm">See the key themes and topics that appear most often.</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-phthalo/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-phthalo text-xs font-bold">✓</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-oxford">Pattern Recognition</div>
+                      <div className="text-oxford/70 text-sm">Our AI helps you connect the dots, identifying potential triggers and patterns (e.g., "You often feel anxious on days you mention 'deadlines'").</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="card rounded-2xl border border-oxford/10 bg-gradient-to-br from-white to-phthalo/5 p-4 sm:p-6">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-phthalo/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <BrainCircuit className="w-4 h-4 sm:w-5 sm:h-5 text-phthalo" />
+                      <span className="font-semibold text-oxford text-sm sm:text-base">Insight</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-oxford/80 italic">"You tend to feel more anxious on Mondays when you mention work deadlines. Consider setting aside Sunday evening for planning."</p>
+                  </div>
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-phthalo/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald" />
+                      <span className="font-semibold text-oxford text-sm sm:text-base">Pattern Detected</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-oxford/80 italic">"Your mood improves significantly after exercise. You've logged positive emotions 85% of the time on days with #workout."</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Feature 4: Visualize Your Journey */}
+          <Reveal delay={0.3}>
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+              <div className="order-2 lg:order-1 card rounded-2xl border border-oxford/10 bg-gradient-to-br from-white to-oxford/5 p-4 sm:p-6">
+                <div className="space-y-3 sm:space-y-4">
+                  {/* Mood Calendar */}
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-oxford/20">
+                    <div className="text-xs sm:text-sm font-semibold text-oxford mb-2 sm:mb-3">Mood Calendar</div>
+                    <div className="grid grid-cols-7 gap-0.5 sm:gap-1">
+                      {Array.from({ length: 28 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="aspect-square rounded"
+                          style={{
+                            backgroundColor: i % 7 === 0 ? '#027bce' : i % 4 === 0 ? '#1ccad8' : i % 3 === 0 ? '#0f4c81' : '#e5e7eb',
+                            opacity: i % 7 === 0 ? 0.8 : i % 4 === 0 ? 0.6 : i % 3 === 0 ? 0.4 : 0.2
+                          }}
+                        ></div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Trend Graph - Line Chart */}
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-oxford/20">
+                    <div className="text-xs sm:text-sm font-semibold text-oxford mb-2 sm:mb-3">Weekly Mood Trends</div>
+                    <div className="relative h-24 sm:h-32">
+                      {/* Y-axis labels */}
+                      <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-oxford/60 pr-2">
+                        <span>10</span>
+                        <span>5</span>
+                        <span>0</span>
+                      </div>
+                      {/* Graph area */}
+                      <div className="ml-6 h-full relative">
+                        {/* Grid lines */}
+                        <div className="absolute inset-0 flex flex-col justify-between">
+                          <div className="border-t border-oxford/10"></div>
+                          <div className="border-t border-oxford/10"></div>
+                          <div className="border-t border-oxford/10"></div>
+                        </div>
+                        {/* Line graph */}
+                        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                          <defs>
+                            <linearGradient id="graphGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" stopColor="#027bce" />
+                              <stop offset="50%" stopColor="#1ccad8" />
+                              <stop offset="100%" stopColor="#0f4c81" />
+                            </linearGradient>
+                          </defs>
+                          {/* Area under the curve */}
+                          <path
+                            d="M 0,80 L 14,60 L 28,65 L 42,45 L 57,50 L 71,35 L 85,40 L 100,25 L 100,100 L 0,100 Z"
+                            fill="url(#graphGradient)"
+                            opacity="0.1"
+                          />
+                          {/* Main line */}
+                          <path
+                            d="M 0,80 L 14,60 L 28,65 L 42,45 L 57,50 L 71,35 L 85,40 L 100,25"
+                            stroke="url(#graphGradient)"
+                            strokeWidth="2.5"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          {/* Data points */}
+                          {[
+                            { x: 0, y: 80 },
+                            { x: 14, y: 60 },
+                            { x: 28, y: 65 },
+                            { x: 42, y: 45 },
+                            { x: 57, y: 50 },
+                            { x: 71, y: 35 },
+                            { x: 85, y: 40 },
+                            { x: 100, y: 25 },
+                          ].map((point, i) => (
+                            <circle
+                              key={i}
+                              cx={`${point.x}%`}
+                              cy={`${point.y}%`}
+                              r="3"
+                              fill="white"
+                              stroke={i === 7 ? '#027bce' : i > 4 ? '#1ccad8' : '#0f4c81'}
+                              strokeWidth="2"
+                            />
+                          ))}
+                        </svg>
+                        {/* X-axis labels */}
+                        <div className="absolute -bottom-5 left-0 right-0 flex justify-between text-xs text-oxford/60">
+                          <span>Mon</span>
+                          <span>Tue</span>
+                          <span>Wed</span>
+                          <span>Thu</span>
+                          <span>Fri</span>
+                          <span>Sat</span>
+                          <span>Sun</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Bar Chart - Emotion Distribution */}
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-oxford/20">
+                    <div className="text-xs sm:text-sm font-semibold text-oxford mb-2 sm:mb-3">Top Emotions This Week</div>
+                    <div className="space-y-2">
+                      {[
+                        { emotion: 'Calm', value: 85, color: '#1ccad8' },
+                        { emotion: 'Happy', value: 72, color: '#027bce' },
+                        { emotion: 'Focused', value: 68, color: '#0f4c81' },
+                        { emotion: 'Anxious', value: 45, color: '#0a2239' },
+                      ].map((item, i) => (
+                        <div key={i}>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-xs text-oxford/70">{item.emotion}</span>
+                            <span className="text-xs font-semibold text-oxford">{item.value}%</span>
+                          </div>
+                          <div className="h-2 bg-oxford/10 rounded-full overflow-hidden">
+                            <motion.div
+                              className="h-full rounded-full"
+                              style={{ backgroundColor: item.color }}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${item.value}%` }}
+                              transition={{ duration: 1, delay: 0.3 + i * 0.1 }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Streak Display */}
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/70 border border-oxford/20">
+                    <div className="text-xs sm:text-sm font-semibold text-oxford mb-2">7-Day Streak 🔥</div>
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      {[1, 2, 3, 4, 5, 6, 7].map((day) => (
+                        <div key={day} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-honolulu to-robin flex items-center justify-center text-white text-xs font-bold">
+                          ✓
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="order-1 lg:order-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-oxford to-honolulu flex items-center justify-center flex-shrink-0">
+                    <LineChart className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-oxford">See Your Progress, Celebrate Your Growth</h3>
+                </div>
+                <p className="text-oxford/80 text-base sm:text-lg leading-relaxed mb-4">
+                  Data becomes a story of your progress.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-oxford/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-oxford text-xs font-bold">📅</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-oxford">Mood Calendar</div>
+                      <div className="text-oxford/70 text-sm">View a heatmap of your dominant moods over the month.</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-oxford/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-oxford text-xs font-bold">📈</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-oxford">Trend Charts</div>
+                      <div className="text-oxford/70 text-sm">Track your emotional trends over time with beautiful, easy-to-read charts.</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-oxford/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-oxford text-xs font-bold">🏆</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-oxford">Streaks & Badges</div>
+                      <div className="text-oxford/70 text-sm">We use gentle gamification to celebrate your consistency and motivate you to build healthy habits.</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function DesignPrinciples() {
+  return (
+  <section id="design" className="py-16 sm:py-24 bg-oxford text-snow">
+      <div className="container-px mx-auto">
+        <SectionHeader
+          dark
+          title="Designed with Purpose. Backed by Research."
+          subtitle="At Ascenity, every feature is an intentional choice, grounded in established principles of user experience design and mental wellness. We've built an app that is not only functional but also safe, supportive, and genuinely effective."
+        />
+
+        <div className="space-y-8 max-w-5xl mx-auto">
+          {/* Emotional Design */}
+          <Reveal>
+            <div className="card rounded-2xl bg-white/5 border border-white/10 p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Sparkles className="w-8 h-8 text-emerald" />
+                <h3 className="text-2xl font-bold">Crafting a Calm Digital Environment</h3>
+              </div>
+              <p className="text-snow/80 leading-relaxed">
+                We practice "emotional design," a discipline focused on creating a positive emotional connection between you and the app. Our calming color palette of soft blues and greens was chosen to promote relaxation and reduce stress. The minimalist interface, use of negative space, and smooth, subtle animations are all designed to create a non-intrusive experience that feels safe and supportive, especially for users in a state of heightened emotional sensitivity.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Privacy by Design */}
+          <Reveal delay={0.1}>
+            <div className="card rounded-2xl bg-white/5 border border-white/10 p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <ShieldCheck className="w-8 h-8 text-emerald" />
+                <h3 className="text-2xl font-bold">Your Trust is Our Foundation</h3>
+              </div>
+              <p className="text-snow/80 leading-relaxed mb-4">
+                We understand the sensitivity of your data. That's why Ascenity is built on a "privacy-by-design" architecture, integrating principles from global data protection regulations like GDPR and HIPAA.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <Lock className="w-5 h-5 text-emerald flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold">Data Minimization</div>
+                    <div className="text-snow/70 text-sm">We only collect data that is essential for the app's core features.</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Lock className="w-5 h-5 text-emerald flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold">End-to-End Encryption</div>
+                    <div className="text-snow/70 text-sm">Your personal entries are encrypted both in transit and at rest, ensuring they remain private.</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Lock className="w-5 h-5 text-emerald flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-semibold">Explicit Consent</div>
+                    <div className="text-snow/70 text-sm">We provide clear, transparent consent flows, so you are always in control of your information.</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </Reveal>
+
+          {/* Habit Formation */}
+          <Reveal delay={0.2}>
+            <div className="card rounded-2xl bg-white/5 border border-white/10 p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Radar className="w-8 h-8 text-emerald" />
+                <h3 className="text-2xl font-bold">Building Positive Routines</h3>
+              </div>
+              <p className="text-snow/80 leading-relaxed">
+                Our features are designed to help you build lasting, positive habits. Research shows that consistent journaling and mood tracking are effective methods for improving mental well-being. By making these tasks engaging and rewarding, Ascenity helps you stay consistent on your self-care journey.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function MarketOpportunity() {
+  return (
+  <section id="market" className="py-16 sm:py-24 bg-snow">
+      <div className="container-px mx-auto">
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-8 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-oxford mb-3 sm:mb-4">A New Horizon in Digital Wellness</h2>
+              <p className="text-base sm:text-lg text-oxford/80 leading-relaxed">
+                The digital mental health market is experiencing unprecedented growth, with investors recognizing its vital importance. From 2016 to 2020, investment in this sector reached nearly <span className="font-bold text-honolulu">$2.6 billion</span>, with almost <span className="font-bold text-honolulu">$1 billion</span> of that in 2020 alone.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="card rounded-2xl border border-oxford/10 bg-gradient-to-br from-white to-honolulu/5 p-4 sm:p-6 lg:p-8">
+              <p className="text-oxford/80 text-base sm:text-lg leading-relaxed">
+                Ascenity is positioned at the forefront of this movement. By strategically leveraging key technologies like <span className="font-semibold text-honolulu">Machine Learning (AI)</span> and <span className="font-semibold text-robin">Data Analytics</span>, we offer a differentiated product that meets the growing demand for accessible, private, and personalized mental wellness tools. Our commitment to ethical design and data privacy builds the deep user trust essential for long-term retention and success in this personal and vital market.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -903,11 +1370,14 @@ function Privacy() {
 
 function FinalCTA() {
   return (
-  <section id="get-started" className="py-16 sm:py-24 bg-snow">
+  <section id="get-started" className="py-16 sm:py-24 bg-gradient-to-b from-snow to-honolulu/5">
       <div className="container-px mx-auto text-center">
         <Reveal>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-oxford">Start Building Emotional Clarity Today</h2>
-          <div className="mt-6 flex justify-center">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-oxford">Begin Your Journey to Self-Awareness Today.</h2>
+          <p className="mt-4 text-lg sm:text-xl text-oxford/70 max-w-2xl mx-auto">
+            Take the first step towards a clearer mind and a more balanced life. Download Ascenity for free and discover what your emotions are trying to tell you.
+          </p>
+          <div className="mt-8 flex justify-center">
             <StoreBadges />
           </div>
         </Reveal>
@@ -940,7 +1410,7 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className="text-center text-snow/60 text-sm pb-8">© {new Date().getFullYear()} Ascenity. All rights reserved.</div>
+      <div className="text-center text-snow/70 text-sm pb-8">© {new Date().getFullYear()} Ascenity. All rights reserved.</div>
     </footer>
   )
 }
@@ -959,7 +1429,8 @@ export default function App() {
             <a href="#science" className="hover:text-oxford transition">Science</a>
             <a href="#deep-dive" className="hover:text-oxford transition">Deep‑Dive</a>
             <a href="#features" className="hover:text-oxford transition">Features</a>
-            <a href="#privacy" className="hover:text-oxford transition">Privacy</a>
+            <a href="#design" className="hover:text-oxford transition">Design</a>
+            <a href="#market" className="hover:text-oxford transition">Market</a>
             <a href="#get-started" className="px-3 py-1.5 rounded-md bg-honolulu text-white hover:shadow-soft transition">Get Started</a>
           </nav>
           <button
@@ -1000,7 +1471,8 @@ export default function App() {
                       { href: '#science', label: 'Science' },
                       { href: '#deep-dive', label: 'Deep‑Dive' },
                       { href: '#features', label: 'Features' },
-                      { href: '#privacy', label: 'Privacy' },
+                      { href: '#design', label: 'Design' },
+                      { href: '#market', label: 'Market' },
                     ].map((item) => (
                       <a
                         key={item.href}
@@ -1027,6 +1499,8 @@ export default function App() {
       <Science />
       <DeepDive />
       <Features />
+      <DesignPrinciples />
+      <MarketOpportunity />
       <Privacy />
       <FinalCTA />
       <Footer />
