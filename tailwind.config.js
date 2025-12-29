@@ -8,11 +8,19 @@ export default {
     extend: {
       colors: {
         snow: '#fcf7f8',
+        cloud: '#F0FDFA',
         oxford: '#0a2239',
         honolulu: '#027bce',
         robin: '#1ccad8',
         emerald: '#00d37d',
         phthalo: '#0f4c81',
+        teal: '#14B8A6',
+        'teal-shimmer': '#2DD4BF',
+        'teal-depth': '#0F766E',
+        'navy-teal': '#0C3B4A',
+        'deep-cyan': '#0891B2',
+        amber: '#F59E0B',
+        ruby: '#EF4444',
       },
       fontFamily: {
         sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'],
