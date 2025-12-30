@@ -466,7 +466,99 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="bg-oxford text-snow border-t border-white/10">
+    <>
+      {/* Team Section */}
+      <section className="py-24 bg-gradient-to-b from-cloud to-snow">
+        <div className="container-px mx-auto">
+          <div className="text-center mb-16">
+            <Reveal>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-oxford mb-4">
+                Meet the Team
+              </h2>
+              <p className="text-xl text-oxford/70 max-w-2xl mx-auto">
+                The passionate individuals building Reliv
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <Reveal delay={0}>
+              <motion.a
+                href="https://github.com/mutahir-muhammad/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card rounded-2xl border border-oxford/10 bg-white p-6 text-center hover:border-honolulu/30 transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-r from-honolulu to-robin mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">MM</span>
+                </div>
+                <h3 className="text-xl font-bold text-oxford mb-2">Muhammad Mutahir</h3>
+                <p className="text-oxford/70 text-sm mb-3">Founder & Lead Developer</p>
+                <div className="flex justify-center">
+                  <Github className="w-5 h-5 text-oxford/50" />
+                </div>
+              </motion.a>
+            </Reveal>
+
+            <Reveal delay={0.05}>
+              <motion.a
+                href="https://github.com/Sudais43"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card rounded-2xl border border-oxford/10 bg-white p-6 text-center hover:border-honolulu/30 transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-r from-robin to-deep-cyan mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">MS</span>
+                </div>
+                <h3 className="text-xl font-bold text-oxford mb-2">Muhammad Sudais</h3>
+                <p className="text-oxford/70 text-sm mb-3">Developer</p>
+                <div className="flex justify-center">
+                  <Github className="w-5 h-5 text-oxford/50" />
+                </div>
+              </motion.a>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <motion.a
+                href="https://github.com/khawar2000-gif"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card rounded-2xl border border-oxford/10 bg-white p-6 text-center hover:border-honolulu/30 transition-all duration-300"
+                whileHover={{ y: -4 }}
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-r from-deep-cyan to-emerald mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">KM</span>
+                </div>
+                <h3 className="text-xl font-bold text-oxford mb-2">Khawar Mehmood</h3>
+                <p className="text-oxford/70 text-sm mb-3">Developer</p>
+                <div className="flex justify-center">
+                  <Github className="w-5 h-5 text-oxford/50" />
+                </div>
+              </motion.a>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <motion.div
+                className="card rounded-2xl border border-oxford/10 bg-white p-6 text-center"
+                whileHover={{ y: -4 }}
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-r from-emerald to-teal-shimmer mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">ZA</span>
+                </div>
+                <h3 className="text-xl font-bold text-oxford mb-2">ZainUlAbideen</h3>
+                <p className="text-oxford/70 text-sm mb-3">Developer</p>
+                <div className="flex justify-center">
+                  <div className="w-5 h-5" />
+                </div>
+              </motion.div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-oxford text-snow border-t border-white/10">
       <div className="container-px mx-auto py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 items-center">
         <div className="text-left">
           <div className="flex items-center gap-2 font-extrabold text-2xl mb-2">
@@ -479,8 +571,8 @@ function Footer() {
         <div className="flex flex-col gap-3 justify-start sm:justify-center">
           <Link to="/" className="text-snow/80 hover:text-white transition">← Back to Ascenity</Link>
           <Link to="/engine" className="text-snow/80 hover:text-white transition">Ascenity Engine</Link>
+          <Link to="/contact" className="text-snow/80 hover:text-white transition">Contact</Link>
           <a className="text-snow/80 hover:text-white transition" href="#privacy">Privacy Policy</a>
-          <a className="text-snow/80 hover:text-white transition" href="#contact">Contact</a>
         </div>
         <div className="flex gap-4 justify-start sm:justify-end">
           <a className="p-3 rounded-lg bg-white/10 hover:bg-white/15 transition" href="https://github.com/mutahir-muhammad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -493,6 +585,7 @@ function Footer() {
       </div>
       <div className="text-center text-snow/70 text-sm pb-8">© {new Date().getFullYear()} Ascenity. All rights reserved.</div>
     </footer>
+    </>
   )
 }
 
