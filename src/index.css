@@ -1,37 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: light;
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Glassmorphism utilities */
 .glass {
   @apply bg-white/40 backdrop-blur-md border border-white/50 shadow-soft;
 }
 
+.glass-dark {
+  @apply bg-oxford/90 backdrop-blur-md border border-robin/20;
+}
+
+.glass-nav {
+  @apply backdrop-blur-md bg-oxford/80 border-b border-robin/20;
+}
+
+/* Container with consistent padding */
 .container-px {
-  @apply px-4 sm:px-6 lg:px-8;
+  @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+/* Section spacing */
+.section-py {
+  @apply py-16 sm:py-20 lg:py-24;
+}
+
+/* Text balance for headings */
+.text-balance {
+  text-wrap: balance;
 }
 
 /* Improve base readability */
 body {
-  @apply leading-relaxed text-[17px];
-}
-h1,h2,h3,h4,h5,h6 {
-  @apply tracking-tight;
+  @apply leading-relaxed text-[17px] antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Focus styles */
+h1, h2, h3, h4, h5, h6 {
+  @apply tracking-tight text-balance;
+}
+
+/* Focus styles for accessibility */
 *:focus-visible {
-  @apply outline-none ring-2 ring-honolulu ring-offset-2 ring-offset-snow;
+  @apply outline-none ring-2 ring-robin ring-offset-2 ring-offset-oxford;
 }
 
 /* Card hover animation */
 .card {
-  @apply transition-all duration-200 ease-out hover:shadow-float hover:-translate-y-0.5;
+  @apply transition-all duration-300 ease-out;
+}
+
+.card:hover {
+  @apply shadow-float -translate-y-1;
+}
+
+/* Touch-friendly buttons */
+.btn {
+  @apply min-h-[44px] px-6 py-3 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all duration-300;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-honolulu to-robin text-white shadow-soft hover:shadow-float hover:scale-[1.02] active:scale-[0.98];
+}
+
+.btn-outline {
+  @apply border-2 border-robin text-robin hover:bg-robin/10 active:bg-robin/20;
+}
+
+.btn-ghost {
+  @apply text-snow/80 hover:text-snow hover:bg-white/10;
+}
+
+/* Prevent horizontal scroll */
+body, html {
+  overflow-x: hidden;
+}
+
+/* Mobile menu animation */
+.mobile-menu-enter {
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+.mobile-menu-exit {
+  animation: slideOutRight 0.3s ease-in forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Smooth scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A2239;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1CCAD8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #027BCE;
+}
+
+/* Safe area for mobile devices */
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
