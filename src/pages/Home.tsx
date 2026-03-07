@@ -55,7 +55,7 @@ export default function Home() {
 
               <Reveal delay={0.2}>
                 <p className="text-lg sm:text-xl lg:text-2xl text-snow/70 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-                  I am <span className="text-robin font-semibold">Mutahir</span>. I merge full-stack scalability with human-centric design.
+                  We are <span className="text-robin font-semibold">Ascenity</span>. Merging full-stack scalability with human-centric design.
                 </p>
               </Reveal>
 
@@ -189,18 +189,14 @@ export default function Home() {
 
             {/* Vision 1 Year - Full width */}
             <Reveal delay={0.2}>
-              <GlassCard className="md:col-span-2 lg:col-span-4">
-                <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-robin to-emerald flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-snow mb-1">Vision (1 Year)</h3>
-                    <p className="text-snow/70">
-                      Establish Ascenity.dev as the <span className="text-robin font-semibold">premier partner for health-tech startups</span> by 2027.
-                    </p>
-                  </div>
+              <GlassCard className="h-full">
+                <div className="w-10 h-10 rounded-lg bg-honolulu/20 flex items-center justify-center mb-4">
+                  <Clock className="w-6 h-6 text-white" />
                 </div>
+                <h3 className="text-xl font-bold text-snow mb-1">Vision (1 Year)</h3>
+                <p className="text-snow/70">
+                  Establish Ascenity.dev as the <span className="text-robin font-semibold">premier partner for health-tech startups</span> by 2027.
+                </p>
               </GlassCard>
             </Reveal>
           </div>
@@ -405,31 +401,58 @@ export default function Home() {
           <Reveal>
             <SectionHeader
               dark
-              title="Meet the Founder"
-              subtitle="The passionate engineer behind Ascenity's products"
+              title="Meet the Founders"
+              subtitle="The passionate engineers  behind Ascenity's products"
             />
           </Reveal>
 
-          <div className="flex justify-center mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-12">
             <Reveal delay={0.1}>
               <motion.a
                 href="https://github.com/mutahir-muhammad/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-oxford/90 backdrop-blur-md border border-robin/30 rounded-2xl p-8 sm:p-12 text-center hover:border-robin/60 hover:bg-oxford transition-all duration-300 max-w-lg w-full shadow-xl"
+                className="block h-full overflow-hidden bg-oxford/90 backdrop-blur-md border border-robin/30 rounded-2xl p-8 sm:p-12 text-center hover:border-robin/60 hover:bg-oxford transition-all duration-300 w-full shadow-xl"
                 whileHover={{ y: -6 }}
               >
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-honolulu via-robin to-teal-shimmer mx-auto mb-6 flex items-center justify-center shadow-2xl">
                   <span className="text-4xl sm:text-5xl font-bold text-white">MM</span>
                 </div>
-                
+
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-snow mb-3">Muhammad Mutahir</h3>
                 <p className="text-robin font-bold text-lg mb-6">Founder & Lead Developer</p>
-                
+
                 <p className="text-snow/70 text-base sm:text-lg mb-8 leading-relaxed px-4">
                   Senior SWE specializing in health-tech, building scalable systems for wellness innovation.
                 </p>
-                
+
+                <div className="flex justify-center">
+                  <div className="p-3 rounded-xl bg-white/5 hover:bg-robin/20 transition-all duration-300">
+                    <Github className="w-6 h-6 text-snow/70 hover:text-snow transition-colors" />
+                  </div>
+                </div>
+              </motion.a>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <motion.a
+                href="https://github.com/renegade-x/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full overflow-hidden bg-oxford/90 backdrop-blur-md border border-robin/30 rounded-2xl p-8 sm:p-12 text-center hover:border-robin/60 hover:bg-oxford transition-all duration-300 w-full shadow-xl"
+                whileHover={{ y: -6 }}
+              >
+                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-honolulu via-robin to-teal-shimmer mx-auto mb-6 flex items-center justify-center shadow-2xl">
+                  <span className="text-4xl sm:text-5xl font-bold text-white">MH</span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-snow mb-3">Muhammad Hassan</h3>
+                <p className="text-robin font-bold text-lg mb-6">Co-Founder & Developer</p>
+
+                <p className="text-snow/70 text-base sm:text-lg mb-8 leading-relaxed px-4">
+                  Aspiring software engineer driven by curiosity, problem-solving, and the pursuit of better systems.
+                </p>
+
                 <div className="flex justify-center">
                   <div className="p-3 rounded-xl bg-white/5 hover:bg-robin/20 transition-all duration-300">
                     <Github className="w-6 h-6 text-snow/70 hover:text-snow transition-colors" />
