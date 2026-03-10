@@ -472,7 +472,7 @@ export default function Engine() {
       <ScrollProgress />
       
       {/* Navigation */}
-      <header className="sticky top-0 z-40 glass-nav">
+      <header className="sticky top-0 z-50 glass-nav">
         <div className="container-px flex items-center justify-between h-16 sm:h-18">
           <Link to="/" className="font-extrabold text-snow flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-robin" />

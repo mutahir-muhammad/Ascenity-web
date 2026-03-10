@@ -24,7 +24,11 @@ html {
 }
 
 .glass-nav {
-  @apply backdrop-blur-md bg-oxford/80 border-b border-robin/20;
+  @apply backdrop-blur-md bg-oxford/60 border-b border-robin/10 transition-all duration-300;
+}
+
+.glass-nav-light {
+  @apply backdrop-blur-md bg-snow/60 border-b border-oxford/5 transition-all duration-300;
 }
 
 /* Container with consistent padding */

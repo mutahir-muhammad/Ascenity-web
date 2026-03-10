@@ -536,7 +536,7 @@ export default function Reliv() {
   return (
     <div className="bg-snow">
       {/* Navigation */}
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-snow/80 border-b border-oxford/10">
+      <header className="sticky top-0 z-40 glass-nav-light">
         <div className="container-px flex items-center justify-between h-16 sm:h-18">
           <Link to="/reliv" className="font-extrabold text-oxford flex items-center gap-2">
             <img src="/Relive Logo.png" alt="Reliv" className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg" />

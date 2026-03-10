@@ -195,7 +195,7 @@ export function Navigation({ dark = true, logo, links = [], cta }: NavProps) {
 
   return (
     <>
-      <header className={`sticky top-0 z-50 ${dark ? 'glass-nav' : 'backdrop-blur-md bg-snow/80 border-b border-oxford/10'}`}>
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${dark ? 'glass-nav' : 'glass-nav-light'}`}>
         <div className="container-px flex items-center justify-between h-16 sm:h-18">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 font-extrabold text-xl">
@@ -337,7 +337,7 @@ interface FooterProps {
 export function Footer({ 
   dark = true, 
   logo,
-  tagline = "Engineering the Future of Health-Tech",
+  tagline = "Full-Lifecycle Venture Studio — Concept to Market.",
   links = [
     { label: 'Ascenity Engine', href: '/engine' },
     { label: 'Reliv', href: '/reliv' },
