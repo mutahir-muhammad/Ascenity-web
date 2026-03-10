@@ -558,10 +558,10 @@ export default function Home() {
               subtitle="Senior engineers, strategists, and creatives working together to take your venture from zero to market."
             />
           </Reveal>
-          <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             <Reveal delay={0.1}>
               <motion.div
-                className="bg-oxford/90 backdrop-blur-md border border-robin/30 rounded-3xl p-8 sm:p-12 text-center max-w-lg w-full shadow-xl hover:border-robin/60 transition-all duration-300"
+                className="bg-oxford/90 backdrop-blur-md border border-robin/30 rounded-3xl p-8 sm:p-12 text-center w-full h-full shadow-xl hover:border-robin/60 transition-all duration-300"
                 whileHover={{ y: -6 }}
               >
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-honolulu via-robin to-teal-shimmer mx-auto mb-6 flex items-center justify-center shadow-glow-lg">
@@ -576,6 +576,26 @@ export default function Home() {
                 <div className="flex justify-center gap-3">
                   <Button href="https://www.linkedin.com/in/mutahir-muhammad235/" variant="primary" size="sm">LinkedIn</Button>
                   <Button href="https://github.com/mutahir-muhammad" variant="outline" size="sm">GitHub</Button>
+                </div>
+              </motion.div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <motion.div
+                className="bg-oxford/90 backdrop-blur-md border border-robin/30 rounded-3xl p-8 sm:p-12 text-center w-full h-full shadow-xl hover:border-robin/60 transition-all duration-300"
+                whileHover={{ y: -6 }}
+              >
+                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-honolulu via-robin to-teal-shimmer mx-auto mb-6 flex items-center justify-center shadow-glow-lg">
+                  <span className="text-4xl sm:text-5xl font-extrabold text-white">MHK</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-snow mb-2">Muhammad Hassan Khan</h3>
+                <p className="text-robin font-bold text-base mb-1">Junior SWE · Developer · Content Strategist</p>
+                <p className="text-snow/50 text-sm mb-6">Full-Stack Development · Software Systems · Digital Media</p>
+                <p className="text-snow/70 text-base leading-relaxed px-4 mb-8">
+                  Junior software engineering focused on building real-world applications while blending technology with voiceover and digital media.
+                </p>
+                <div className="flex justify-center gap-3">
+                  <Button href="https://www.linkedin.com/in/hassankhan2612/" variant="primary" size="sm">LinkedIn</Button>
+                  <Button href="https://github.com/renegade-x" variant="outline" size="sm">GitHub</Button>
                 </div>
               </motion.div>
             </Reveal>
